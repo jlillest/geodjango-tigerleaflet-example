@@ -30,7 +30,6 @@ DJANGO_APPS = (
 )
 THIRD_PARTY_APPS = (
     'leaflet',
-    'tigerline',
 )
 
 # Apps specific for this project go here.
