@@ -10,11 +10,6 @@ Example project for geodjango-tigerleaflet app
 :License: MIT
 
 
-Settings
---------
-
-Moved to settings_.
-
 .. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
 Deployment
@@ -24,12 +19,33 @@ This repo shows a basic usage of the geodjango-tigerleaflet app.
 
 This project requires:
  - A postgresql database with postgis extension
+ ```
+psql
+CREATE DATABASE database_name OWNER user_name;
+\connect database_name;
+CREATE EXTENSION postgis;
+ ```
  - geodjango-tigerline populated with state and county TIGER data
+ ```
+wget ftp://ftp2.census.gov/geo/tiger/TIGER2016/STATE/tl_2016_us_state.zip
+unzip tl_2016_us_state.zip -d tl_2016_us_state.zip
+wget ftp://ftp2.census.gov/geo/tiger/TIGER2016/COUNTY/tl_2016_us_county.zip
+unzip tl_2016_us_county.zip -d tl_2016_us_county.zip
+python manage.py load_tigerleaflet --path=./
+<it may take several minutes to load all the state/county data>
+ ```
+
 
 Fire up the web server, navigate to index.html and look through the maps.
 
-TODO
+Todo
 ----
 
-Better integration with TIGER data, pull geodjango-tigerleaflet from pypi.
+ - automate the downloading, unzipping, importing of tiger data
+ - make the tigerleaflet module more generic
+ - get tigerline changes accepted and push tigerline models into own package
 
+Thanks
+------
+
+Many thanks to Adam Fast for creating (geodjango-tigerline)[https://github.com/adamfast/geodjango-tigerline], as well as pydanny for (cookiecutter)[https://github.com/audreyr/cookiecutter].
