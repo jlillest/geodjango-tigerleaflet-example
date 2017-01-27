@@ -1,0 +1,17 @@
+ <div id={{ map_name }} class="leaflet-container-default"></div>
+ <script>
+  var map = tigerleafletMap('{{ map_name }}');
+
+  var map_data = {
+    prefix:   {{ prefix }},
+    url:      "{% url 'tigerleaflet:county_data' %}",
+    map:      map,
+    data:     {
+      'state': "{{ state }}"
+    },
+    function: goToCounty,
+  }
+
+  getGeojson(map_data);
+
+</script>

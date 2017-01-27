@@ -4,15 +4,25 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from .views import Index, StateView, CountyView
 from tigerleaflet import urls
 
 app_name = 'geodjango_tigerleaflet_example'
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+
+    url(r'tigerleaflet/$',
+        Index.as_view(),
+        name='country'),
+    url(r'tigerleaflet/(?P<state>[a-z_]+)$',
+        StateView.as_view(),
+        name='state'),
+    url(r'tigerleaflet/(?P<state>[a-z_]+)/(?P<county>[a-z_]+)$',
+        CountyView.as_view(),
+        name='county'),
     url(r'^tigerleaflet/', include('tigerleaflet.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
