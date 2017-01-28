@@ -7,8 +7,12 @@
     url:      "{% url 'tigerleaflet:country_data' %}",
     map:      map,
     function: goToState,
+    data:     {
+      csrfmiddlewaretoken : '{{ csrf_token }}',
+      state               : "{{ state }}",
+    },
+    zoom: false,
   }
-
   getGeojson(map_data);
 
 </script>

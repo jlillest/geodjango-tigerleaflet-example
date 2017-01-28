@@ -12,9 +12,9 @@ def get_geojson(data, fields):
 class CountryData(View):
     fields = ('name', 'usps_code', 'fips_code')
 
-    def get(self, request):
+    def post(self, request):
         map_data = State.objects.raw(
-            'SELECT id, ST_simplify(mpoly, 0.1) AS mpoly,'
+            'SELECT id, ST_simplify(mpoly, 0.5) AS mpoly,'
             ' name, usps_code, fips_code'
             ' FROM tigerleaflet_state')
         geojson = get_geojson(map_data, self.fields)
@@ -24,11 +24,10 @@ class CountryData(View):
 class StateData(View):
     fields = ('name', 'usps_code', 'fips_code')
 
-    def get(self, request):
-        print(self.request.GET)
-        usps_code = self.request.GET['state'].upper()
+    def post(self, request):
+        usps_code = self.request.POST['state'].upper()
         map_data = County.objects.raw(
-            'SELECT id, ST_simplify(mpoly, 0.01) AS mpoly,'
+            'SELECT id, ST_simplify(mpoly, 0.05) AS mpoly,'
             ' name, fips_code, usps_code FROM tigerleaflet_county'
             ' WHERE usps_code=%s', [usps_code],
         )
@@ -39,10 +38,9 @@ class StateData(View):
 class CountyData(View):
     fields = ('name', 'fips_code', 'usps_code')
 
-    def get(self, request):
-        print(self.request.GET)
-        usps_code = self.request.GET['state'].upper()
-        county_name = self.request.GET['county'].title()
+    def post(self, request):
+        usps_code = self.request.POST['state'].upper()
+        county_name = self.request.POST['county'].title()
         map_data = County.objects.raw(
             'SELECT id, mpoly,'
             ' name, usps_code FROM tigerleaflet_county'

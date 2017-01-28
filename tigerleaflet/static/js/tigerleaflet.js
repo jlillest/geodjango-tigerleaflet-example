@@ -25,7 +25,7 @@ function getGeojson(map_data) {
   link_prefix = map_data['prefix'];
 
   $.ajax({
-    type: "GET",
+    type: "POST",
     url: map_data['url'],
     data: map_data['data'],
   }).done(function (ajax) {

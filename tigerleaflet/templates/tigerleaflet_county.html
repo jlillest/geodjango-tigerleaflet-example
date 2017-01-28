@@ -7,9 +7,12 @@
     url:      "{% url 'tigerleaflet:county_data' %}",
     map:      map,
     data:     {
-      'state': "{{ state }}"
+      csrfmiddlewaretoken : '{{ csrf_token }}',
+      state               : "{{ state }}",
+      county              : "{{ county }}",
     },
-    function: goToCounty,
+    zoom:     true,
+    function: null,
   }
 
   getGeojson(map_data);

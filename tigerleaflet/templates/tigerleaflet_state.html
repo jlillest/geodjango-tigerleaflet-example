@@ -7,8 +7,8 @@
     url:      "{% url 'tigerleaflet:state_data' %}",
     map:      map,
     data:     {
-      'state'  : "{{ state }}",
-      'county' : "{{ county }}",
+      csrfmiddlewaretoken : '{{ csrf_token }}',
+      state               : "{{ state }}",
     },
     zoom:     true,
     function: goToCounty,
