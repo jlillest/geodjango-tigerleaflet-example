@@ -26,9 +26,9 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 
     'django.contrib.gis',
-    'djgeojson',
 )
 THIRD_PARTY_APPS = (
+    'djgeojson',
     'leaflet',
 )
 
@@ -153,6 +153,7 @@ TEMPLATES = [
 ]
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (str(APPS_DIR.path('static')),)
 
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
