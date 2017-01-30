@@ -1,0 +1,11 @@
+{% load tigerleaflet_tags %}
+
+<html>
+  <head>
+    <title>{{ title }}</title>
+    {% init_tigerleaflet_map %}
+  </head>
+  <body>
+  {% show_tigerleaflet_state 'map' "/tigerleaflet/" state %}
+  </body>
+</html>

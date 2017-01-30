@@ -9,5 +9,12 @@
 {% endblock extra_header %}
 
 {% block content %}
-  {% show_tigerleaflet_country 'map' "/tigerleaflet/" 37.22 -90.41 3 %}
+  {% show_tigerleaflet_country 'tigerleaflet_map' "/tigerleaflet/" 37.22 -90.41 3 %}
+
+  <script>
+    L.marker([37, -90]).addTo(tigerleaflet_map)
+    .bindPopup('An example of extending a tigerleaflet map.')
+    .openPopup();
+  </script>
+
 {% endblock %}

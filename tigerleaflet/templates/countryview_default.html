@@ -1,0 +1,11 @@
+{% load tigerleaflet_tags %}
+
+<html>
+  <head>
+    <title>{{ title }}</title>
+    {% init_tigerleaflet_map %}
+  </head>
+  <body>
+    {% show_tigerleaflet_country 'map' "/tigerleaflet/" 37.22 -90.41 3 %}
+  </body>
+</html>

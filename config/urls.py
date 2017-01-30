@@ -7,21 +7,22 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-from .views import Index, StateView, CountyView
-from tigerleaflet import urls
+from tigerleaflet.views import CountryView
+from tigerleaflet.views import StateView
+from tigerleaflet.views import CountyView
 
 app_name = 'geodjango_tigerleaflet_example'
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
 
     url(r'tigerleaflet/$',
-        Index.as_view(),
+        CountryView.as_view(template_name='pages/country.html'),
         name='country'),
     url(r'tigerleaflet/(?P<state>[a-z_]+)$',
-        StateView.as_view(),
+        StateView.as_view(template_name='pages/state.html'),
         name='state'),
     url(r'tigerleaflet/(?P<state>[a-z_]+)/(?P<county>[a-z_]+)$',
-        CountyView.as_view(),
+        CountyView.as_view(template_name='pages/county.html'),
         name='county'),
     url(r'^tigerleaflet/', include('tigerleaflet.urls')),
 
