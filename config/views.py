@@ -1,6 +1,5 @@
 from django.views.generic import TemplateView
 from tigerleaflet.models import State
-from tigerleaflet.models import County
 
 class Index(TemplateView):
     template_name = "pages/country.html"
